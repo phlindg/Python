@@ -1,2 +1,19 @@
->>>import tv
+>>> from tv import *
+>>> import main
 
+>>> textfil = open("textfil.txt","r")
+>>> contents = textfil.readlines()
+>>> volym = 3
+>>> kanal = 5
+>>> kok = TV(kanal, volym)
+>>> kok.sank_volym()
+2
+>>> print(kok.sank_volym())
+1
+>>> print(kok.sank_volym())
+0
+>>> print(kok.hoj_volym())
+1
+>>> print(contents[1])
+vardag
+<BLANKLINE>

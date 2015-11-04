@@ -1,0 +1,49 @@
+from tv import *
+
+textfil = open("textfil.txt", "r+")
+
+if __name__ == "__main__":
+    rader = textfil.readlines()
+   #här vill jag ha att man ska välja tv osv.
+    print("*** Välkommen till TV simulatorn ***")
+    print("1. Vardagsrums TV")
+    print("2. Köks TV")
+    print("3. Avsluta")
+    while True:
+		val_1 = int(input("Välj: "))
+		if val_1 == 1:
+		    vardagsrum = TV()
+		    vardasrum.kanal = rader[2]
+		    vardagsrum.volym = rader[3]
+		    print("1. Byt Kanal")
+		    print("2. Sänk ljudvolym")
+		    print("3. Höj ljudvolym")
+		    print("4. Gå till huvudvolym")
+		       # kanal = read.line(2)
+		    val_2 = int(input("Välj 2: "))
+		       # if val_2 == 1:
+		       #     vardagsrum.kanal = #från textdo
+		    if val_2 == 2:
+		        vardagsrum.sank_volym()
+		    if val_2 == 3:
+		        vardagsrum.hoj_volym()
+		    if val_2 == 4:
+		        print("dra åd")
+		if val_1 == 2:
+		    kok = TV()
+		    kok.kanal = rader[5]
+		    kok.volym = rader[6]
+		    print("1. Byt Kanal")
+		    print("2. Sänk ljudvolym")
+		    print("3. Höj ljudvolym")
+		    print("4. Gå till huvudprogram")
+		    val_2 = int(input("Välj 2: "))
+		    if val_2 == 1:
+		        ny_kanal = int(input("Välj kanal: "))
+		        kok.kanal = ny_kanal
+		    if val_2 == 2:
+		        kok.sank_volym()
+		    if val_2 == 3:
+		        kok.sank_volym()
+		if val_1 == 3:
+		    break
