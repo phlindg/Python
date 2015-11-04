@@ -72,19 +72,18 @@ class Panel(object):
         month_list = list(range(12))
         month_names = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"]
         for month in month_list:
-            daglista.append(month)
-            daglista.append("Area, soltal, latitud, dag, solighetsfaktor, f(t, latitud), W(t)")
-            daglista.append("===========================================================")
+            textfil.write("Area, soltal, latitud, dag, solighetsfaktor, f(t, latitud), W(t)"+ "\n")
+            textfil.write("==========================================================="+"\n")
+            textfil.write(month_names[month] + "\n")
             for day in day_list:
-                daglista.append(str(self.area) + ",")
-                daglista.append(str(self.soltal) + ",")
-                daglista.append(str(latitud)+ ",")
-                daglista.append(str(day) +  ",")
-                daglista.append(str(self.solighetsfaktor)+ ",")
-                daglista.append(str(f(day + 30*month, latitud)) +  ",")
-                daglista.append(str(self.dag_for_dag(day + 30*month)) + "\n")
+                textfil.write(str(self.area) + ", "+
+                str(self.soltal) + ", "+
+                str(latitud)+ ", "+
+                str(day) +  ", "+
+                str(self.solighetsfaktor)+ ", "+
+                str(f(day + 30*month, latitud)) +  ", "+
+                str(self.dag_for_dag(day + 30*month))+"\n"
+                )
 
-        
-        print(daglista)
-        textfil.write(str(daglista))
+        daglista = str(daglista)
         textfil.close()
