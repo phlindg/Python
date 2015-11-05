@@ -1,6 +1,5 @@
 >>> from panel import *
->>> from main import *
 >>> import random
->>> spanien = Panel(150, 4)
+>>> spanien = Panel(150, 4, 50)
 >>> spanien.standardavvikelse()
 

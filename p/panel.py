@@ -7,29 +7,27 @@
 #
 import math
 import random
-try:
-    latitud = int(input("Ange latitud: "))
-except ValueError:
-    latitud = int(input("Försök igen: "))
-def f(t, latitud, error=""):
-    if latitud < 90 and latitud > 0:
-        v = (23.5 * math.sin((math.pi*(t-80))/180) + 90 - latitud)/90
-        if v > 0 and v < 1:
-            return v**2
-        elif v >= 1:
-            return 1
-        elif v <= 0:
-            return 0
-    else:
-        error = "Ange en latitud mellan 0-90"
-        return error
 
 class Panel(object):
     
-    def __init__(self, area, soltal):
+    def __init__(self, area, soltal, latitud):
         self.area = area
         self.soltal = soltal
         self.solighetsfaktor = random.random()
+        self.latitud = latitud
+    
+    def f(self, t, latitud, error=""):
+        if latitud < 90 and latitud > 0:
+            v = (23.5 * math.sin((math.pi*(t-80))/180) + 90 - latitud)/90
+            if v > 0 and v < 1:
+                return v**2
+            if v >= 1:
+                return 1
+            if v <= 0:
+                return 0
+        else:
+            erorr = "Ange en latitud mellan 0-90"
+            return error
     
     def genomsnitt(self):
         t_list = list(range(361))
@@ -37,7 +35,7 @@ class Panel(object):
         for t in t_list:
             self.solighetsfaktor = random.random()
             try:
-                w = (1/t)*(self.area * self.soltal * self.solighetsfaktor * f(t, latitud))
+                w = (1/t)*(self.area * self.soltal * self.solighetsfaktor * self.f(t, self.latitud))
             except ZeroDivisionError:
                 w = 0
             k += w
@@ -49,7 +47,7 @@ class Panel(object):
         for t in t_list:
             self.solighetsfaktor = random.random()
             try:
-                s = ((1/(t-1)) * (self.area * self.soltal * self.solighetsfaktor * f(t, latitud) - self.genomsnitt()))**2
+                s = ((1/(t-1)) * (self.area * self.soltal * self.solighetsfaktor * self.f(t, self.latitud) - self.genomsnitt()))**2
             except ZeroDivisionError:
                 t=0
         return s**(1/2)
@@ -60,14 +58,17 @@ class Panel(object):
 
     def dag_for_dag(self, t):
         self.solighetsfaktor = random.random()
-        e = self.area * self.soltal * self.solighetsfaktor * f(t, latitud)
+        e = self.area * self.soltal * self.solighetsfaktor * self.f(t, self.latitud)
         return e
     
     
 
     def spara(self):
         daglista = []
-        textfil = open("daglista.txt", "r+")
+        try:
+            textfil = open("daglista.txt", "r+")
+        except IOError:
+            textfil = open("daglista.txt", "r+")
         day_list = list(range(31))
         month_list = list(range(12))
         month_names = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"]
@@ -78,12 +79,11 @@ class Panel(object):
             for day in day_list:
                 textfil.write(str(self.area) + ", "+
                 str(self.soltal) + ", "+
-                str(latitud)+ ", "+
+                str(self.latitud)+ ", "+
                 str(day) +  ", "+
                 str(self.solighetsfaktor)+ ", "+
-                str(f(day + 30*month, latitud)) +  ", "+
+                str(self.f(day + 30*month, self.latitud)) +  ", "+
                 str(self.dag_for_dag(day + 30*month))+"\n"
                 )
-
-        daglista = str(daglista)
+        
         textfil.close()
