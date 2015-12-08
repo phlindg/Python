@@ -7,7 +7,6 @@
 #
 import math
 import random
-from tkinter import *
 class Panel:
     
     def __init__(self, area, soltal, latitud):
@@ -54,21 +53,6 @@ class Panel:
         e = self.area * self.soltal * self.solighetsfaktor * self.energifunktion(dag, self.latitud)
         return round(e, 1)
     
-    def rita(self):
-        tk = Tk()
-
-        
-        b_vind = Button(tk, text="Vindkraftverk")
-        b_sol = Button(tk, text="Solkraftverk!")
-        
-        text = Text(tk)
-        tk.geometry("1200x600")
-        tk.title("P-uppgift!!!!!!!!!!!") 
-        text.pack()
-        b_sol.pack()
-        b_vind.pack()
-        tk.mainloop()
-
     def spara(self):
         daglista = []
         try:
