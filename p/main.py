@@ -12,6 +12,7 @@ def latitud_input():
             if latitud >= 0 and latitud <= 90:  
                 return latitud
             else:
+                print("Du måste skriva en siffra mellan 1-90")
                 continue 
         except ValueError:
             print("Du måste skriva en siffra mellan 1-90.")
@@ -25,6 +26,7 @@ def rotor_dm_input():
             if rotor_dm >= 25 and rotor_dm <= 50: 
                 return rotor_dm
             else:
+                print("Du måste skriva en siffra mellan 25-50")
                 continue
         except ValueError:
             print("Du måste skriva en siffra mellan 25-50")
@@ -36,14 +38,15 @@ def en_till_input():
     while True:
         try:
             en_till = int(input("Vill du välja en till? "))
+            if en_till == 2:
+                return False
+            if en_till == 1:
+                return True
+            else:
+                print("Du måste välja mellan 1 och 2.")
+                continue
         except ValueError:
             print("Du måste välja en siffra mellan 1 och 2.")
-        if en_till == 2:
-            return False
-        if en_till == 1:
-            return True
-        else:
-            print("Du måste välja mellan 1 och 2.")
             continue
 #Denna funktion innehåller nästan som en sammanfattning av hela programmet. 
 #Den låter användaren välja vilken typ av kraftverk den vill använda, och skriver sedan ut värdet för de parametrar som valts.
@@ -81,8 +84,10 @@ def val():
                     i += 1
                 return
             else:
+                print("Du maste valja 1 eller 2")
                 continue
         except ValueError:
+            print("Du maste valja 1 eller 2")
             continue
 #SKALL INTE GRANSKAS, EJ REDOVISNING FÖR A
 def rita():
