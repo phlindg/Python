@@ -2,24 +2,24 @@
 >>> from vind import *
 >>> import random
 >>> spanien = Panel(450, 7, 56)
->>> spanien.f(1, 56)
+>>> spanien.energifunktion(1, 56)
 0.014753506505294696
->>> sg = spanien.genomsnitt()
+>>> sg = spanien.genomsnitt(56)
 >>> sg <= 300 and sg >= 230
 True
 >>> ss = spanien.standardavvikelse()
 >>> ss <= 350 and ss >= 250
 True
->>> sr = spanien.riktig()
+>>> sr = spanien.netto_funktion()
 >>> sr <= 90 and sr >= -90
 True
 >>> sd = spanien.dag_for_dag(44)
 >>> sd <= 200
 True
 >>> danmark = Vind(35)
->>> de = danmark.energi(5)
+>>> de = danmark.vindfunktion(5)
 >>> de <= 550 and de >= 350
-True
->>> dg = danmark.genomsnitt()
+False
+>>> dg = danmark.genomsnitt(44)
 >>> dg <= 550 and de >= 350
-True
+False

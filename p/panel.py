@@ -1,3 +1,5 @@
+
+
 # W(t) = area * soltal * solighets faktor * f(t, latitud)
 #area = solfangarens area
 #soltal = proportionalitetskonstant, energi / ytenhet
@@ -25,12 +27,12 @@ class Panel:
         elif e <= 0:
             return 0
     #Denna funktion tar informationen fran energifunktion och skapar ett genomsnitt enligt formeln given i uppg.
-    def genomsnitt(self, lat):
+    def genomsnitt(self):
         dag_list = list(range(1,361))
         total = 0
         for dag in dag_list:
-            self.solighetsfaktor = random.random() #SÄTTER DU INTE DENNA LÄGST UPP?
-            e_dag = (self.area * self.soltal * self.solighetsfaktor * self.energifunktion(dag, lat))
+            self.solighetsfaktor = random.random() 
+            e_dag = (self.area * self.soltal * self.solighetsfaktor * self.energifunktion(dag, self.latitud))
             total += e_dag  
         snitt = total/360
         return snitt
@@ -40,13 +42,13 @@ class Panel:
         total = 0
         for dag in dag_list:
             self.solighetsfaktor = random.random()
-            s_dag = (self.area * self.soltal * self.solighetsfaktor * self.energifunktion(dag, self.latitud) - self.genomsnitt())**2
+            s_dag = (self.area * self.soltal * self.solighetsfaktor * self.energifunktion(dag, self.latitud) - self.genomsnitt(self.latitud))**2
             total += s_dag
         snitt = total/359 
         return snitt**(1/2)
     #denna raknar ut nettot av energin genom att ta differensen av funktionerna genomsnitt och standardavvikelse
-    def netto_funktion(self): #OKLART VARIABELNAMN 
-        netto = self.genomsnitt() - self.standardavvikelse()
+    def netto_funktion(self): 
+        netto = self.genomsnitt(self.latitud) - self.standardavvikelse()
         return netto
     #Denna funktion ger värdet för en dag
     def dag_for_dag(self, dag):

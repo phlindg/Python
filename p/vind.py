@@ -7,7 +7,7 @@ class Vind:
 
     #Denna funktion räknar ut vind beroende på dag
     def vindfunktion(self, dag):
-        if dag > 1 and dag <= 90 or dag > 180 and dag < 360: #SKA INTE FUNKA, HA EN OR MELLAN 90/180 ELLER DELA I TVÅ
+        if dag > 1 and dag <= 90 or dag > 180 and dag < 360: 
             vind = 15
         else:
             vind = 12 
@@ -23,4 +23,4 @@ class Vind:
         g = total/360
         return g
 
-        #1-90 180 - 360
+    
